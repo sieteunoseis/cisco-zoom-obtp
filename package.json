@@ -1,0 +1,27 @@
+{
+  "name": "cisco-zoom-obtp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "docker:build": "docker build -t sieteunoseis/cisco-zoom-obtp .",
+    "docker:run": "docker run --env-file docker.txt -p 49160:3000 -d sieteunoseis/cisco-zoom-obtp",
+    "docker:push": "docker push sieteunoseis/cisco-zoom-obtp",
+    "docker:prune": "docker system prune -a",
+    "listen": "kill $(lsof -ti:3000)"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "~1.9.1",
+    "ngrok": "^3.2.7",
+    "strong-soap": "^2.0.0",
+    "xml2json": "^0.12.0"
+  }
+}
