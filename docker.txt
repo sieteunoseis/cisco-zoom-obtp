@@ -1,0 +1,13 @@
+AXL_USERNAME=wordenj
+AXL_PASSWORD=Timbers2019!
+AXL_VERSION=12.0
+AXL_IP=170.2.96.82
+NGROK_SUBDOMAIN=automate.builders
+NGROK_AUTH_TOKEN=7f71vJpNdmJszQQQYVQLt_7Kctcy12W4Td2AmwELYF1
+ZOOM_API_KEY=3bpvBeFnSxSVmueIDE0BVw
+ZOOM_API_SECRET=5L3ctAzcF2WTciJvjHNsV0sRmC4UX6obbEEa
+PHONE_XML_IMAGE_URL=http://170.2.96.200/nested/zoom2.png
+ZOOM_USERS = "jeremy.worden@gmail.com,user01@cisco.com"
+AXL_APP_USERNAME=zoom_admin
+AXL_APP_PASSWORD=changeMe
+NODE_ENV=development
