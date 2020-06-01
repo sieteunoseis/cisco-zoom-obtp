@@ -1,6 +1,8 @@
 # Zoom One Button to Push Application
 NodeJS application using Zoom & Cisco's API's to enable One Button to Push
 
+![Sample Graph](https://github.com/sieteunoseis/cucm_tig_dashboard_ubuntu/blob/master/screenshots/Grafana1.png)
+
 ## Install
 ```
 npm install
