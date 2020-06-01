@@ -1,16 +1,18 @@
 # Zoom One Button to Push Application
+
 NodeJS application using Zoom & Cisco's API's to enable One Button to Push
 
-![Sample Graph](https://github.com/sieteunoseis/cucm_tig_dashboard_ubuntu/blob/master/screenshots/Grafana1.png)
+![Sample Screenshot](https://github.com/sieteunoseis/cisco-zoom-obtp/blob/master/images/ip-phone-screenshot.png)
 
 ## Install
-```
+
+```node
 npm install
 ```
 
 ## Needed Enviromental Variables
 
-```
+```node
 AXL_USERNAME=administrator
 AXL_PASSWORD=ciscopsdt
 AXL_VERSION=12.5
