@@ -1,14 +1,12 @@
 # Zoom One Button to Push Application
 NodeJS application using Zoom & Cisco's API's to enable One Button to Push
 
-## Access/Credentials
-
-### Install
+## Install
 ```
 npm install
 ```
 
-### Needed Enviromental Variables
+## Needed Enviromental Variables
 
 ```
 AXL_USERNAME=administrator
