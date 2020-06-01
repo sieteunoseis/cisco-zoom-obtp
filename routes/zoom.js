@@ -11,7 +11,7 @@ var zoomApiSecret = process.env.ZOOM_API_SECRET;
 
 const jwtPayload = {
   iss: zoomApiKey,
-  exp: new Date().getTime() + 10000,
+  exp: new Date().getTime() + 5000,
 };
 
 /* POST API */
@@ -34,7 +34,11 @@ router.post("/", async function (req, res) {
         return error;
       });
 
+    console.log("Meeting Info: "  + JSON.stringify(meetingInfo))
+
     var users = process.env.ZOOM_USERS.split(",");
+
+    console.log("Users: "  + users)
 
     const userLoop = async (_) => {
       const promises = users.map(async (email) => {
@@ -47,6 +51,8 @@ router.post("/", async function (req, res) {
     }
 
     var userIds = await userLoop();
+
+    console.log("User ID's: "  + userIds)
 
     const deviceLoop = async (_) => {
       const promises = userIds.map(async (userId) => {
@@ -64,11 +70,15 @@ router.post("/", async function (req, res) {
       return flattenedDevices.indexOf(elem) == pos;
     });
 
+    console.log("Devices: "  + uniqueDevices)
+
     var appUser = await axlModule.addAppUser(
       process.env.AXL_APP_USERNAME,
       process.env.AXL_APP_PASSWORD,
       uniqueDevices
     );
+
+    console.log("App User: "  + JSON.stringify(appUser))
 
     const ipAddressLoop = async (_) => {
       const promises = uniqueDevices.map(async (device) => {
@@ -82,6 +92,8 @@ router.post("/", async function (req, res) {
 
     var ipAddressArr = await ipAddressLoop()
 
+    console.log("IP Addresses: "  + ipAddressArr)
+
     const phoneXmlLoop = async (_) => {
       const promises = ipAddressArr.map(async (ipaddress) => {
         var phoneSuccess = await sendXmlToPhone(process.env.AXL_APP_USERNAME,process.env.AXL_APP_PASSWORD,meetingId,meetingInfo.pstn_password,meetingTopic,ipaddress)
@@ -94,7 +106,11 @@ router.post("/", async function (req, res) {
 
     phoneXmlResults = await phoneXmlLoop()
 
+    console.log("Phone XML: "  + phoneXmlResults)
+
     var deleteUser = await axlModule.removeAppUser(process.env.AXL_APP_USERNAME)
+
+    console.log("Delete App User: "  + JSON.stringify(deleteUser))
 
     res.sendStatus(200);
 
@@ -118,10 +134,11 @@ function sendXmlToPhone(
   meetingTopic,
   phoneIpAddress
 ) {
+  var res = meetingTopic.substring(0, 24);
   const XML =
     "XML=<CiscoIPPhoneGraphicFileMenu WindowMode='Wide'>" +
     "<Title>Zoom Meeting Started</Title>" +
-    `<Prompt>Topic: ${meetingTopic}</Prompt>` +
+    `<Prompt>${res}</Prompt>` +
     "<LocationX>-1</LocationX>" +
     "<LocationY>-1</LocationY>" +
     `<URL>${process.env.PHONE_XML_IMAGE_URL}</URL>` +
@@ -153,6 +170,8 @@ function sendXmlToPhone(
     },
     data: XML,
   };
+
+  console.log(ipPhoneXmlOptions)
   return new Promise(function (resolve, reject) {
     axios(ipPhoneXmlOptions)
       .then((response) => {

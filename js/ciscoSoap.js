@@ -11,6 +11,7 @@ var specialRequest = request.defaults({
 
 var username = process.env.AXL_USERNAME;
 var password = process.env.AXL_PASSWORD;
+
 var auth = "Basic " + Buffer.from(username + ":" + password).toString("base64");
 
 var url = path.join(
